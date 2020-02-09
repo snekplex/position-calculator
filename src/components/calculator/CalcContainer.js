@@ -8,7 +8,10 @@ class CalcContainer extends React.Component {
   render () {
     return (
       <div className="calc-container">
-        <PositionCalculator resultFunc={this.props.calcFunc}/>
+        <PositionCalculator 
+          resultFunc={this.props.calcFunc}
+          closeFunc={this.props.closeFunc}
+        />
       </div>
     )
   }

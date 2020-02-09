@@ -9,7 +9,12 @@ class PositionCalculator extends React.Component {
     sellGainPrice: '',
     sellLossPrice: '',
     sellGainPercent: '',
-    sellLossPercent: ''
+    sellLossPercent: '',
+    stockWorth: '',
+    potentialGain: '',
+    potentialLoss: '',
+    totalWithGains: '',
+    totalWithLoss: ''
   }
 
   setStockPrice(price) {
@@ -88,6 +93,29 @@ class PositionCalculator extends React.Component {
     this.setState({ sellLossPercent: sellLossPercent });
   }
 
+  calculateResults() {
+    const stockPrice = parseFloat(this.state.stockPrice);
+    const stockAmount = parseFloat(this.state.stockAmount);
+    const stockGainPrice = parseFloat(this.state.sellGainPrice);
+    const stockLossPrice = parseFloat(this.state.sellLossPrice);
+
+    const stockWorth = stockPrice * stockAmount;    
+    const potentialGains = (stockGainPrice - stockPrice) * stockAmount;
+    const potentialLoss = (stockPrice - stockLossPrice) * stockAmount;
+
+    const totalWithGains = stockWorth + potentialGains;
+    const totalWithLoss = stockWorth - potentialLoss;
+
+    this.setState({
+      stockWorth: stockWorth.toFixed(2),
+      potentialGain: potentialGains.toFixed(2),
+      potentialLoss: potentialLoss.toFixed(2),
+      totalWithGains: totalWithGains.toFixed(2),
+      totalWithLoss: totalWithLoss.toFixed(2)
+    }, () => this.props.resultFunc(this.state));
+
+  }
+
   render () {
     return (
       <div className="position-calc">
@@ -124,7 +152,7 @@ class PositionCalculator extends React.Component {
           </form>
         </div>
         <div className="position-calc-footer">
-          <button className="calc-submit-btn" onClick={() => this.props.resultFunc(this.state)}>Calculate</button>
+          <button className="calc-submit-btn" onClick={() => this.calculateResults()}>Calculate</button>
         </div>
       </div>
     )
