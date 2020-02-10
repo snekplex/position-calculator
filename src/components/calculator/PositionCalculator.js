@@ -2,6 +2,8 @@ import React from 'react';
 
 import '../../scss/PositionCalculator.scss';
 
+import * as calcSchemas from '../../schemas/calculator';
+
 class PositionCalculator extends React.Component {
   state = {
     stockPrice: '',
@@ -112,7 +114,15 @@ class PositionCalculator extends React.Component {
       potentialLoss: potentialLoss.toFixed(2),
       totalWithGains: totalWithGains.toFixed(2),
       totalWithLoss: totalWithLoss.toFixed(2)
-    }, () => this.props.resultFunc(this.state));
+    }, async () => {
+      try {
+        // eslint-disable-next-line
+        const inputsPassed = await calcSchemas.posCaclSchema.validateAsync(this.state);
+        this.props.resultFunc(this.state);
+      } catch (err) {
+        window.alert('Fill in all of the inputs with numbers only.');
+      }
+    });
 
   }
 
