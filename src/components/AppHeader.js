@@ -11,7 +11,7 @@ class AppHeader extends React.Component {
         <div className="header-left-links">
           <ul className="header-link-list">
             <li>
-              <a href="/">
+              <a href="https://github.com/snekplex/position-calculator">
                 <img 
                   className="github-32-logo" 
                   alt="Github Logo"
