@@ -1,0 +1,39 @@
+
+@media (max-width: 1313px) {
+    .app-header {
+        .header-app-name {
+            margin-left: 10px;
+        }
+    }
+
+    .app-container {
+        flex-direction: column;
+    
+        .position-calc {
+            display: flex;
+            width: 90%;
+            height: 90%;
+            margin-bottom: 50px;
+
+            .position-calc-header {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 30px;
+            }
+
+            .position-calc-footer {
+                .calc-submit-btn {
+                    background: #38b455;
+                }
+            }
+        }
+
+        .position-calc-result {
+            display: flex;
+            width: 90%;
+            height: 90%;
+            margin-bottom: 50px;
+        }
+    }
+}
