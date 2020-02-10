@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Scroll from 'react-scroll';
 
 import '../scss/AppContainer.scss';
 
@@ -27,21 +28,29 @@ class AppContainer extends React.Component {
   closeResults() {
     this.setState({
       resultsVisible: !this.state.resultsVisible
+    }, () => {
+      if (this.state.resultsVisible) {
+        Scroll.animateScroll.scrollToBottom();
+      } else {
+        Scroll.animateScroll.scrollToTop();
+      }
     });
   }
 
   render () {
     return (
       <div className="app-container">
-        <CalcContainer 
-          calcFunc={this.updateCalcResults}
-          closeFunc={this.closeResults}
-        />
-        <ResultContainer 
-          visible={this.state.resultsVisible}
-          inputs={this.state.resultsInputs}
-          closeFunc={this.closeResults}
-        />
+        <Scroll.Element className="scroll-element">
+          <CalcContainer
+            calcFunc={this.updateCalcResults}
+            closeFunc={this.closeResults}
+          />
+          <ResultContainer 
+            visible={this.state.resultsVisible}
+            inputs={this.state.resultsInputs}
+            closeFunc={this.closeResults}
+          />
+        </Scroll.Element>
       </div>
     )
   }

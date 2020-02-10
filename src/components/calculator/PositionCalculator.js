@@ -120,7 +120,7 @@ class PositionCalculator extends React.Component {
         const inputsPassed = await calcSchemas.posCaclSchema.validateAsync(this.state);
         this.props.resultFunc(this.state);
       } catch (err) {
-        window.alert('Fill in all of the inputs with numbers only.');
+        window.alert('Fill in all of the inputs with positive numbers only. No negative numbers.');
       }
     });
 

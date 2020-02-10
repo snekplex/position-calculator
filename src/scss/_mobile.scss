@@ -8,6 +8,10 @@
 
     .app-container {
         flex-direction: column;
+
+        .scroll-element {
+            flex-direction: column;
+        }
     
         .position-calc {
             display: flex;
